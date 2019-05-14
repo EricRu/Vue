@@ -1,7 +1,7 @@
 <template>
   <div class="el-main">
   <header>
-    <h1 class="text-left left">选课系统</h1><button v-on:click="tuichu" class="right">退出</button>
+    <h1 class="text-left left">选课系统</h1><el-button v-on:click="tuichu" class="right">退出</el-button>
   </header>
     <el-dropdown>
   <span class="el-dropdown-link choose_positon">
@@ -29,6 +29,7 @@
       <el-table-column prop="cust_address" label="已选" width="170"></el-table-column>
 
     </el-table>
+    <el-button v-on:click="righter">确定</el-button>
     <div class="block">
       <el-pagination v-bind:current-Page="pageIndex" v-bind:page-size="pageSize" :total="total"
                      layout="total,sizes,prev,pager,next,jumper" v-bind:page-sizes="pageSizes"
@@ -47,8 +48,21 @@
       <el-table-column prop="cust_phone" label="教师" width="170"></el-table-column>
       <el-table-column prop="cust_address" label="容量" width="170"></el-table-column>
       <el-table-column prop="cust_address" label="已选" width="170"></el-table-column>
-
+      <el-table-column
+        fixed="right"
+        label="操作"
+        width="120">
+        <template slot-scope="scope">
+          <el-button
+            @click.native.prevent="deleteRow(scope.$index, tableData)"
+            type="text"
+            size="small">
+            移除
+          </el-button>
+        </template>
+      </el-table-column>
     </el-table>
+    <el-button v-on:click="send" type="primary" align="right">提交</el-button>
 
   </div>
 
@@ -84,7 +98,19 @@
             cust_name:'ad',
             cust_phone:'123343',
             cust_address:'addere',
-          }
+          },
+            {
+              cust_id:'3',
+              cust_name:'ad',
+              cust_phone:'123343',
+              cust_address:'addere',
+            },
+            {
+              cust_id:'3',
+              cust_name:'ad',
+              cust_phone:'123343',
+              cust_address:'addere',
+            }
           ],
           pageIndex: 0,
           pageSize: 10,
@@ -100,12 +126,21 @@
     tuichu:function () {
       this.$router.push('/');
     },
+    deleteRow:function(index, rows) {
+      rows.splice(index, 1);
+    },
     addnew:function (val,row) {
       console.log(val);
       alert(row.cust_name);
       this.custList2 = row;
       // console.log(this.custList2);
       alert(row.cust_id);
+    },
+    send:function () {
+      alert("send");
+    },
+    righter:function () {
+      alert("right");
     }
   }
   }
