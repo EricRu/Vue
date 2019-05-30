@@ -3,7 +3,7 @@
 <!--    <img src="./assets/logo.png">-->
     <ul>
       <li><router-link to="/home">home</router-link></li>
-      <li><router-link to="/">first</router-link></li>
+      <li><router-link to="/school">school</router-link></li>
       <li><router-link to="/login">login</router-link></li>
     </ul>
     <router-view></router-view>
